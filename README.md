@@ -1,3 +1,3 @@
 # Computer-Hardware-Store
-Front-End : Angular
+Front-End : Angular  
 Back-End : ASP.NET Core
