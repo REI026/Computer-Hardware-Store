@@ -12,11 +12,11 @@ import { ProductManagementComponent } from './warehouse-management/product-manag
 
 const routes: Routes = [
   { path:'', component : LoginComponent },
-  { path:'main', component : MainManagementComponent },
+  { path:'main/:role', component : MainManagementComponent },
   { path:'warehouse', component : WarehouseManagementComponent },
   { path:'store', component : StoreComponent },
-  { path:'main/employee', component : EmployeeManagementComponent },
-  { path:'main/customer', component : CustomerManagementComponent },
+  { path:'main/:role/employee', component : EmployeeManagementComponent },
+  { path:'main/:role/customer', component : CustomerManagementComponent },
   { path:'warehouse/product', component : ProductManagementComponent },
   
 ];

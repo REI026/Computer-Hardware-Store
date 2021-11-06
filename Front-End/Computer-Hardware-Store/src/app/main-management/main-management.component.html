@@ -1,5 +1,16 @@
-<p-card>
-    <button routerLink="customer" pButton pRipple type="button" label="จัดการข้อมูลลูกค้า" class="p-button-raised"></button>
-    <button routerLink="employee" pButton pRipple type="button" label="จัดการข้อมูลพนักงาน" class="p-button-raised"></button>
-    <button routerLink="" pButton pRipple type="button" label="หน้าหลัก" class="p-button-raised"></button>
-</p-card>
+<div class="center">
+    <div class="logo">
+        <h1 style="font-weight: bold; letter-spacing: 5px;">Computer&Hardware Store</h1>
+    </div>
+    <div class="login">
+        <p-card  [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+            <h3 style="text-align: center; font-weight: bold; letter-spacing: 5px;">Menu</h3> <br>
+            <div style="padding: 5px;"> <button routerLink="customer/" pButton pRipple type="button" label="จัดการข้อมูลลูกค้า" class="p-button-raised p-button-success"></button><br></div>
+            <div *ngIf="pagerole == 0" style="padding: 5px;"> <button routerLink="employee/" pButton pRipple type="button" label="จัดการข้อมูลพนักงาน" class="p-button-raised p-button-secondary"></button><br> </div>
+            <div *ngIf="pagerole == 0" style="padding: 5px;"> <button routerLink="/warehouse/"  pButton pRipple type="button" label="จัดการคลังสินค้า" class="p-button-raised p-button-info"></button> </div>
+            <div style="padding: 5px;"> <button routerLink="/store/" pButton pRipple type="button" label="หน้าร้าน" class="p-button-raised p-button-warning "></button> </div>
+            <div style="padding: 5px;">  <button routerLink="" pButton pRipple type="button" label="SignOut" class="p-button-raised p-button-danger"></button> </div>
+           
+        </p-card>
+    </div>
+</div>

@@ -1,15 +1,45 @@
-button {
+/* button {
     display: flex;
     width: 100%;
     text-align: center;
-}
-
+} */
+/* 
 p-card {
     height: 200px;
-    width: 100%; /* 400px*/
+    width: 400px;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -100px;
-    margin-left: -50%; /* -200px */
+    margin-left: -50%;
+} */
+
+.center {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(230, 230, 230);
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(230, 230, 230);
+}
+
+.logo {
+    margin-top: -5%;
+    margin-bottom: 2%;
+    text-align: center;
+    background-color: rgb(230, 230, 230);
+}
+
+p-card {
+    height: 500px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
 }

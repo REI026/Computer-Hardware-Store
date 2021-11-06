@@ -5,16 +5,46 @@
     </header>
     <div class="content">
         <div style=" padding-left: 5px;">
-            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Product" (click)="changeContent(1, pdID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Product" (click)="changeContent(1, pdID)" class="p-button-raised button" style="width: 150px;"></button>
             <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="addProduct()" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
             <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="updateProduct(pdID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
             <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="deleteProduct(pdID)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
             <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0, pdID)" class="p-button-raised button"></button>
+            <input *ngIf="content == 0" type="text" pInputText [(ngModel)]="searchText" placeholder="Search">&nbsp;
             <p-dropdown *ngIf="content == 0" [options]="list_type" placeholder="Type" optionLabel="type" [showClear]="true" [(ngModel)]="sortType" (onChange)="sortByType()"></p-dropdown>
         </div> <br>
 
         <div *ngIf="content == 0"> 
-            <p-table [value]="product" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Brand</th>
+                    <th>Name/Model</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Each</th>
+                    <th style="width: 187px;">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of product | filter:searchText">
+                        <td><img width="100px" style="padding: 0px;" src="{{imgPlaceholder(i.image)}}" alt="none"></td>
+                        <td>{{i.brand}}</td>
+                        <td>{{i.model}}</td>
+                        <td>{{i.detail}}</td>
+                        <td>{{i.price}}</td>
+                        <td>{{i.type}}</td>
+                        <td>{{i.each}}</td>
+                        <td>
+                            <button (click)="changeContent(2, i.id)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
+                            <button (click)="changeContent(3, i.id)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            <!-- <p-table [value]="product" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>ID</th>
@@ -44,7 +74,7 @@
                         </td>
                     </tr>
                 </ng-template>
-            </p-table>
+            </p-table> -->
         </div>
 
         <div *ngIf="content == 1"> 
@@ -93,7 +123,7 @@
                 </ng-template>
                 <div class="row">
                     <div class="col-1">
-                        <br><br><br><br><br><br><b><label>ID</label></b> <br>
+                        <br><br><br><br><br><br><br><br><b><label>ID</label></b> <br>
                         <b><label>Brand</label></b> <br>
                         <b><label>Name/Model</label></b> <br>
                         <b><label>Details</label></b> <br>
@@ -102,7 +132,7 @@
                         <b><label>Each</label></b> <br>
                     </div>
                     <div class="col-1">
-                        <label><img width="150px" style="padding: 0px;" src="{{imgPlaceholder(product.image)}}"></label> <br><br>
+                        <label><img width="150px" style="padding: 0px;" src="{{imgPlaceholder(product_detail.image)}}"></label> <br><br>
                         <label>: &nbsp;&nbsp; {{product_detail.id}}</label> <br>
                         <label>: &nbsp;&nbsp; {{product_detail.brand}}</label> <br>
                         <label>: &nbsp;&nbsp; {{product_detail.model}}</label> <br>

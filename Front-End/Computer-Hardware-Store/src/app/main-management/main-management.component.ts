@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-main-management',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-management.component.css']
 })
 export class MainManagementComponent implements OnInit {
-
-  constructor() { }
+  pagerole: any;
+  constructor(private service: SharedService) { 
+    this.pagerole = localStorage.getItem('role');
+  }
 
   ngOnInit(): void {
   }
-
 }

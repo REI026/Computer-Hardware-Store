@@ -7,6 +7,7 @@ import { Observable  } from 'rxjs';
 })
 export class SharedService {
   readonly APIUrl = "https://localhost:44316/api";
+  role : any;
 
   constructor( private http:HttpClient) {
   }
@@ -54,6 +55,14 @@ export class SharedService {
 
   deleteProduct(val: any) {
     return this.http.delete(this.APIUrl+'/Product/'+`${val}`);
+  }
+
+  setRole(role: any) {
+    this.role = role;
+  }
+
+  getRole() {
+    return this.role;
   }
   
 }

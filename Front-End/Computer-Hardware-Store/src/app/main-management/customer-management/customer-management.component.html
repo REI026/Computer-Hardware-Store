@@ -59,13 +59,13 @@
             <p-card [style]="{'width': '80'}">
                 <div>
                     E-Mail <br>
-                    <input type="text" pInputText [(ngModel)]="email" > <br>
+                    <input type="text" pInputText [(ngModel)]="email" placeholder="{{customer_detail.email}}"> <br>
                     Name <br>
-                    <input type="text" pInputText [(ngModel)]="name" > <br>
+                    <input type="text" pInputText [(ngModel)]="name" placeholder="{{customer_detail.name}}"> <br>
                     Tel. <br>
-                    <input type="text" pInputText [(ngModel)]="phone" > <br>
+                    <input type="text" pInputText [(ngModel)]="phone" placeholder="{{customer_detail.phone}}"> <br>
                     Address <br>
-                    <input type="text" pInputText [(ngModel)]="address" > <br>
+                    <input type="text" pInputText [(ngModel)]="address" placeholder="{{customer_detail.address}}"> <br>
                 </div>
             </p-card>
         </div>

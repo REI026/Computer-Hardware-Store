@@ -54,11 +54,11 @@
                     Name <br>
                     <input type="text" pInputText [(ngModel)]="name" > <br>
                     Tel. <br>
-                    <input type="text" pInputText [(ngModel)]="phone" > <br>
+                    <input type="text" pInputText [(ngModel)]="phone"> <br>
                     Address <br>
                     <input type="text" pInputText [(ngModel)]="address" > <br>
                     Role <br>
-                    <input type="text" pInputText [(ngModel)]="role" > <br>
+                    <p-selectButton [options]="select_role" [(ngModel)]="role" optionLabel="name" optionValue="value"></p-selectButton> <br>
                 </div>
             </p-card>
         </div>
@@ -67,15 +67,15 @@
             <p-card [style]="{'width': '80'}">
                 <div>
                     E-Mail <br>
-                    <input type="text" pInputText [(ngModel)]="email" > <br>
+                    <input type="text" pInputText [(ngModel)]="email" placeholder="{{employee_detail.email}}"> <br>
                     Name <br>
-                    <input type="text" pInputText [(ngModel)]="name" > <br>
+                    <input type="text" pInputText [(ngModel)]="name" placeholder="{{employee_detail.name}}"> <br>
                     Tel. <br>
-                    <input type="text" pInputText [(ngModel)]="phone" > <br>
+                    <input type="text" pInputText [(ngModel)]="phone" placeholder="{{employee_detail.phone}}"> <br>
                     Address <br>
-                    <input type="text" pInputText [(ngModel)]="address" > <br>
+                    <input type="text" pInputText [(ngModel)]="address" placeholder="{{employee_detail.address}}"> <br>
                     Role <br>
-                    <input type="text" pInputText [(ngModel)]="role" > <br>
+                    <p-selectButton [options]="select_role" [(ngModel)]="role" optionLabel="name" optionValue="value"></p-selectButton> <br>
                 </div>
             </p-card>
         </div>

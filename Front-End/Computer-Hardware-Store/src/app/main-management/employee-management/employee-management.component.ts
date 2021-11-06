@@ -18,11 +18,17 @@ export class EmployeeManagementComponent implements OnInit {
   name: any;
   phone: any;
   address: any;
-  role: any;
+  role: number = 2;
+  select_role: any = [];
 
   
   constructor(private service : SharedService, private location: Location, private router: Router) {
     this.content = 0;
+    this.select_role = [
+      {name: "ผู้จัดการ", value: 0},
+      {name: "พนักงานคลังสินค้า", value: 1},
+      {name: "พนักงานขาย", value: 2}
+    ]
    }
 
   ngOnInit(): void {
@@ -94,8 +100,8 @@ export class EmployeeManagementComponent implements OnInit {
   Role(role: any) {
     var str="";
     if(role == 0) {str="ผู้จัดการ"}
-    if(role == 1) {str="พนักงานคลังสินค้า"}
-    if(role == 2) {str="พนักงานขาย"}
+    else if(role == 1) {str="พนักงานคลังสินค้า"}
+    else if(role == 2) {str="พนักงานขาย"}
     else {str = role}
     return str;
   }

@@ -1,5 +1,16 @@
-<p-card>
-    <button routerLink="main" pButton pRipple type="button" label="เจ้าของร้าน" class="p-button-raised"></button>
-    <button routerLink="warehouse" pButton pRipple type="button" label="สินค้าคงคลัง" class="p-button-raised"></button>
-    <button routerLink="store" pButton pRipple type="button" label="หน้าร้าน" class="p-button-raised"></button>
-</p-card>
+<div class="center">
+    <div class="logo">
+        <h1 style="font-weight: bold; letter-spacing: 5px;">Computer&Hardware Store</h1>
+    </div>
+    <div class="login">
+        <p-card  [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+            <h3 style="text-align: center; font-weight: bold; letter-spacing: 5px;">SignIn</h3> <br>
+            <div style="padding: 5px;"> <input style="width: 100%; padding: 12px;" type="text" pInputText placeholder="Username" name="username"> </div>
+            <div style="padding: 5px;"> <input style="width: 100%; padding: 12px;" type="password" pInputText placeholder="Password" name="password"> </div>
+            <div style="padding: 5px;"> <button routerLink="main/0" (click)="setRole(0)" pButton pRipple type="button" label="เจ้าของร้าน" class="p-button-raised p-button-success"></button><br></div>
+            <div style="padding: 5px;"> <button routerLink="warehouse" pButton pRipple type="button" label="พนักงานคลังสินค้า" class="p-button-raised p-button-secondary"></button><br> </div>
+            <div style="padding: 5px;"> <button routerLink="main/1" (click)="setRole(1)" pButton pRipple type="button" label="พนักงานขาย" class="p-button-raised p-button-info"></button> </div>
+            <div style="padding: 5px;"> <button routerLink="store" pButton pRipple type="button" label="ลูกค้า" class="p-button-raised p-button-warning "></button> </div>
+        </p-card>
+    </div>
+</div>

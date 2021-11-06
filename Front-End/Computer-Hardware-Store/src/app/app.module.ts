@@ -14,6 +14,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextModule} from 'primeng/inputtext';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -61,7 +62,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     NgbAlertModule,
     NgbPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    SelectButtonModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

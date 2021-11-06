@@ -16,6 +16,7 @@ export class WarehouseManagementComponent implements OnInit {
   product_detail: any = [];
   content : any;
   pdID: any;
+  searchText: any;
 
   brand: any;
   model: any;
