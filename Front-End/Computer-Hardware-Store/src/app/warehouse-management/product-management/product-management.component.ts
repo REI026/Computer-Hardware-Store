@@ -10,8 +10,8 @@ export class ProductManagementComponent implements OnInit {
   products: any = [
     { img : "X",
       brand : "X",
-      name : "X",
-      des : "X",
+      model : "X",
+      detail : "X",
       price : "X",
     },
   ]

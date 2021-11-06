@@ -1,16 +1,16 @@
 <body>
     <header class="top-header">
         <a class="menu-item brand"  href="main/employee">จัดการข้อมูลพนักงาน</a>
-        <a class="menu-item" style="cursor:pointer;" (click)="Back()">กลับ</a>
+        <a *ngIf="content == 0" class="menu-item" style="cursor:pointer;" (click)="Back()">กลับ</a>
     </header>
 
     <div class="content">
         <div style=" padding-left: 5px;">
-            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Employee" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="changeContent(1)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0)" class="p-button-raised button"></button>
+            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Employee" (click)="changeContent(1, userID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="addEmployee()" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="updateEmployee(userID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="deleteEmployee(userID)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0, userID)" class="p-button-raised button"></button>
         </div> <br>
         <div *ngIf="content == 0"> 
             <p-table [value]="employee" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
@@ -21,6 +21,7 @@
                         <th>Name</th>
                         <th>Tel.</th>
                         <th>Address</th>
+                        <th>Role</th>
                         <th style="width: 187px;">Action</th>
                     </tr>
                 </ng-template>
@@ -31,9 +32,14 @@
                         <td>{{employee.name}}</td>
                         <td>{{employee.phone}}</td>
                         <td>{{employee.address}}</td>
+                        <td *ngIf="employee.role == 0" >ผู้จัดการ</td>
+                        <td *ngIf="employee.role == 1" >พนักงานคลังสินค้า</td>
+                        <td *ngIf="employee.role == 2" >พนักงานขาย</td>
+                        <td *ngIf="employee.role > 2 || employee.role < 0 " >{{employee.role}}</td>
+                        
                         <td>
-                            <button (click)="changeContent(2)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
-                            <button (click)="changeContent(3)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
+                            <button (click)="changeContent(2, employee.id)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
+                            <button (click)="changeContent(3, employee.id)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -44,15 +50,15 @@
             <p-card [style]="{'width': '80'}">
                 <div>
                     E-Mail <br>
-                    <input type="text" pInputTex> <br>
+                    <input type="text" pInputText [(ngModel)]="email" > <br>
                     Name <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="name" > <br>
                     Tel. <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="phone" > <br>
                     Address <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="address" > <br>
                     Role <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="role" > <br>
                 </div>
             </p-card>
         </div>
@@ -61,15 +67,15 @@
             <p-card [style]="{'width': '80'}">
                 <div>
                     E-Mail <br>
-                    <input type="text" pInputTex> <br>
+                    <input type="text" pInputText [(ngModel)]="email" > <br>
                     Name <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="name" > <br>
                     Tel. <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="phone" > <br>
                     Address <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="address" > <br>
                     Role <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="role" > <br>
                 </div>
             </p-card>
         </div>
@@ -80,6 +86,7 @@
                 </ng-template>
                 <div class="row">
                     <div class="col-1">
+                        <b><label>ID</label></b> <br>
                         <b><label>E-Mail</label></b> <br>
                         <b><label>Name</label></b> <br>
                         <b><label>Tel.</label></b> <br>
@@ -87,11 +94,12 @@
                         <b><label>Role</label></b> <br>
                     </div>
                     <div class="col-1">
-                        <label>: &nbsp;&nbsp; {{employee.id}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{employee.email}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{employee.name}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{employee.phone}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{employee.address}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{employee_detail.id}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{employee_detail.email}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{employee_detail.name}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{employee_detail.phone}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{employee_detail.address}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{Role(employee_detail.role)}}</label> <br>
                     </div>  
                 </div>
             </p-card>

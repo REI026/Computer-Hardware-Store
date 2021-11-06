@@ -16,7 +16,7 @@ export class SharedService {
   }
 
   getUser(val: any) {
-    return this.http.get<any>(this.APIUrl+'/User/', val);
+    return this.http.get<any>(this.APIUrl+'/User/'+`${val}`);
   }
 
   addUser(val: any) {
@@ -28,7 +28,7 @@ export class SharedService {
   }
 
   deleteUser(val: any) {
-    return this.http.delete(this.APIUrl+'/User/', val);
+    return this.http.delete(this.APIUrl+'/User/'+`${val}`);
   }
   
 }
