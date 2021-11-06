@@ -12,6 +12,10 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {SidebarModule} from 'primeng/sidebar';
 import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextModule} from 'primeng/inputtext';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { MainManagementComponent } from './main-management/main-management.component';
 import { WarehouseManagementComponent } from './warehouse-management/warehouse-management.component';
@@ -48,13 +52,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     SidebarModule,
     TableModule,
+    DropdownModule,
+    InputTextModule,
 
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
     NgbAlertModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

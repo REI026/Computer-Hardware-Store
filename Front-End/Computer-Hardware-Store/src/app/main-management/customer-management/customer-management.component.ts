@@ -9,7 +9,6 @@ import { Location } from '@angular/common';
 })
 export class CustomerManagementComponent implements OnInit {
 
-  users: any = [];
   customer: any = [];
   customer_detail: any = [];
   userID: any;

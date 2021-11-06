@@ -5,11 +5,12 @@
     </header>
     <div class="content">
         <div style=" padding-left: 5px;">
-            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Product" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="changeContent(1)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
-            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0)" class="p-button-raised button"></button>
+            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Product" (click)="changeContent(1, pdID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="addProduct()" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="updateProduct(pdID)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="deleteProduct(pdID)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0, pdID)" class="p-button-raised button"></button>
+            <p-dropdown *ngIf="content == 0" [options]="list_type" placeholder="Type" optionLabel="type" [showClear]="true" [(ngModel)]="sortType" (onChange)="sortByType()"></p-dropdown>
         </div> <br>
 
         <div *ngIf="content == 0"> 
@@ -30,7 +31,7 @@
                 <ng-template pTemplate="body" let-product>
                     <tr>
                         <td>{{product.id}}</td>
-                        <td>{{product.img}}</td>
+                        <td><img width="100px" style="padding: 0px;" src="{{imgPlaceholder(product.image)}}" alt="none"></td>
                         <td>{{product.brand}}</td>
                         <td>{{product.model}}</td>
                         <td>{{product.detail}}</td>
@@ -38,8 +39,8 @@
                         <td>{{product.type}}</td>
                         <td>{{product.each}}</td>
                         <td>
-                            <button (click)="changeContent(2)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
-                            <button (click)="changeContent(3)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
+                            <button (click)="changeContent(2, product.id)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
+                            <button (click)="changeContent(3, product.id)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -50,17 +51,17 @@
             <p-card [style]="{'width': '80'}">
                 <div>
                     Brand <br>
-                    <input type="text" pInputTex> <br>
+                    <input type="text" pInputTex [(ngModel)]="brand"> <br>
                     Name/Model <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="model"> <br>
                     Details <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="detail"> <br>
                     Price <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="price"> <br>
                     Type <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="type"> <br>
                     Each <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="each"> <br>
                 </div>
             </p-card>
         </div>
@@ -68,18 +69,20 @@
         <div *ngIf="content == 2"> 
             <p-card [style]="{'width': '80'}">
                 <div>
+                    Image <br>
+                    <input type="text" pInputTex [(ngModel)]="image" placeholder="{{product_detail.image}}"> <br>
                     Brand <br>
-                    <input type="text" pInputTex> <br>
+                    <input type="text" pInputTex [(ngModel)]="brand" placeholder="{{product_detail.brand}}"> <br>
                     Name/Model <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="model" placeholder="{{product_detail.model}}"> <br>
                     Details <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="detail" placeholder="{{product_detail.detail}}"> <br>
                     Price <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="price" placeholder="{{product_detail.price}}"> <br>
                     Type <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="type" placeholder="{{product_detail.type}}"> <br>
                     Each <br>
-                    <input type="text" pInputText> <br>
+                    <input type="text" pInputText [(ngModel)]="each" placeholder="{{product_detail.each}}"> <br>
                 </div>
             </p-card>
         </div>
@@ -90,8 +93,7 @@
                 </ng-template>
                 <div class="row">
                     <div class="col-1">
-                        <b><label>Image</label></b> <br>
-                        <b><label>ID</label></b> <br>
+                        <br><br><br><br><br><br><b><label>ID</label></b> <br>
                         <b><label>Brand</label></b> <br>
                         <b><label>Name/Model</label></b> <br>
                         <b><label>Details</label></b> <br>
@@ -100,14 +102,14 @@
                         <b><label>Each</label></b> <br>
                     </div>
                     <div class="col-1">
-                        <label>: &nbsp;&nbsp; {{product.img}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.id}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.brand}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.model}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.detail}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.price}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.type}}</label> <br>
-                        <label>: &nbsp;&nbsp; {{product.each}}</label> <br>
+                        <label><img width="150px" style="padding: 0px;" src="{{imgPlaceholder(product.image)}}"></label> <br><br>
+                        <label>: &nbsp;&nbsp; {{product_detail.id}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.brand}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.model}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.detail}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.price}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.type}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product_detail.each}}</label> <br>
                     </div>  
                 </div>
             </p-card>

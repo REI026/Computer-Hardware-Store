@@ -30,5 +30,30 @@ export class SharedService {
   deleteUser(val: any) {
     return this.http.delete(this.APIUrl+'/User/'+`${val}`);
   }
+
+  // product
+  getProducts():Observable<any[]> {
+    return this.http.get<any>(this.APIUrl+'/Product/');
+  }
+
+  getProduct(val: any) {
+    return this.http.get<any>(this.APIUrl+'/Product/'+`${val}`);
+  }
+
+  getProductByType(val: any) {
+    return this.http.get<any>(this.APIUrl+'/Product/'+`${val}`);
+  }
+
+  addProduct(val: any) {
+    return this.http.post(this.APIUrl+'/Product/', val);
+  }
+
+  updateProduct(val: any) {
+    return this.http.put(this.APIUrl+'/Product/', val);
+  }
+
+  deleteProduct(val: any) {
+    return this.http.delete(this.APIUrl+'/Product/'+`${val}`);
+  }
   
 }
