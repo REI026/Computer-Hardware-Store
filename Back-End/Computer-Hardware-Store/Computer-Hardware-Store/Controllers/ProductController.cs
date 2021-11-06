@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Computer_Hardware_Store.Models.ProductModel;
 using Computer_Hardware_Store.DataModel;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace Computer_Hardware_Store.Controllers
 {
@@ -13,10 +16,17 @@ namespace Computer_Hardware_Store.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository productRepository;
+
+        SqlConnection con = new SqlConnection("Server=DESKTOP-JQNN8IB\\SQLEXPRESS;Database=CHStore;Trusted_Connection=True;MultipleActiveResultSets=True;");
+        
         public ProductController(IProductRepository productRepository) => this.productRepository = productRepository;
 
         [HttpGet]
         public IEnumerable<Product> Get() => productRepository.GetProducts();
+
+        [HttpGet]
+        [Route("GetByType/{type}")]
+        public IEnumerable<Product> Get(string type) => productRepository.GetProductsByType(type);
 
         [HttpGet("{id}")]
         public ActionResult<Product> Get(int id) => productRepository.GetProduct(id);

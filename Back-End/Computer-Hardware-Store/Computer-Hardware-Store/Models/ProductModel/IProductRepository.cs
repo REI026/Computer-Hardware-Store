@@ -13,5 +13,7 @@ namespace Computer_Hardware_Store.Models.ProductModel
         void Add(Product product);
         void Update(Product productChanges);
         void Delete(int id);
+
+        IEnumerable<Product> GetProductsByType(string type);
     }
 }

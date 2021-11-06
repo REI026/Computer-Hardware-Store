@@ -51,5 +51,9 @@ namespace Computer_Hardware_Store.Models.ProductModel
             }
             context.SaveChanges();
         }
+
+        public IEnumerable<Product> GetProductsByType(string type) {
+            return context.Products.Where(product => product.type == type).ToList();
+        }
     }
 }
