@@ -1,0 +1,15 @@
+button {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+p-card {
+    height: 200px;
+    width: 100%; /* 400px*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -50%; /* -200px */
+}

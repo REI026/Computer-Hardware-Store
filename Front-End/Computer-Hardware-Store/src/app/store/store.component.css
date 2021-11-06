@@ -1,0 +1,22 @@
+.top-header {
+    background-color: rgb(83, 83, 83);
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: inline-block;
+}
+
+.brand {
+    font-size: large;
+}
+
+.content {
+    padding: 10px;
+}
+
+.product h4{
+    display: inline-block;
+}

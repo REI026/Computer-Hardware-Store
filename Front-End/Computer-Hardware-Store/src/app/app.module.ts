@@ -1,27 +1,62 @@
 import { NgModule } from '@angular/core';
+import { NgbModule, NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MenuItem } from 'primeng/api';
 
 import {AccordionModule} from 'primeng/accordion';
-import {MenuItem} from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import {SidebarModule} from 'primeng/sidebar';
+import {TableModule} from 'primeng/table';
+
+import { MainManagementComponent } from './main-management/main-management.component';
+import { WarehouseManagementComponent } from './warehouse-management/warehouse-management.component';
+import { StoreComponent } from './store/store.component';
+import { EmployeeManagementComponent } from './main-management/employee-management/employee-management.component';
+import { CustomerManagementComponent } from './main-management/customer-management/customer-management.component';
+import { ProductManagementComponent } from './warehouse-management/product-management/product-management.component';
+import { LoginComponent } from './login/login.component';
+
+import { SharedService } from './shared.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainManagementComponent,
+    WarehouseManagementComponent,
+    StoreComponent,
+    EmployeeManagementComponent,
+    CustomerManagementComponent,
+    ProductManagementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     
     AccordionModule,
-    PrimeNGConfig,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CardModule,
+    ButtonModule,
+    SidebarModule,
+    TableModule,
+
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    NgbAlertModule,
+    NgbPaginationModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
