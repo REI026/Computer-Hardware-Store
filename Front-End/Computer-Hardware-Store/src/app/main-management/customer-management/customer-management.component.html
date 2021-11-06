@@ -1,31 +1,16 @@
 <body>
-    
     <header class="top-header">
-        <a class="menu-item brand"  href="#">หน้าหลัก</a>
-        <a class="menu-item" href="/customer">ลูกค้า</a>
-        <a class="menu-item" href="#">ออกจากระบบ</a>
+        <a class="menu-item brand"  href="main/customer">จัดการข้อมูลลูกค้า</a>
+        <a class="menu-item" style="cursor:pointer;" (click)="Back()">กลับ</a>
     </header>
-    <div class="sidebar">
-        <h2>Sidebar</h2>
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
-            <li><a href="#"><i class="fas fa-address-card"></i>About</a></li>
-            <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
-            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
-            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
-            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
-        </ul>
-        <div class="social_media">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
 
     <div class="content">
-        <div style=" padding-bottom: 30px;">
-            <button pButton pRipple type="button" label="Create New" (click)="changeContent(1)" class="p-button-raised button"></button>
+        <div style=" padding-left: 5px;">
+            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Customer" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="changeContent(1)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0)" class="p-button-raised button"></button>
         </div> <br>
         <div *ngIf="content == 0"> 
             <p-table [value]="customer" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
@@ -56,15 +41,60 @@
         </div>
 
         <div *ngIf="content == 1"> 
-            <h4>Add</h4>
+            <p-card [style]="{'width': '80'}">
+                <div>
+                    E-Mail <br>
+                    <input type="text" pInputTex> <br>
+                    Name <br>
+                    <input type="text" pInputText> <br>
+                    Tel. <br>
+                    <input type="text" pInputText> <br>
+                    Address <br>
+                    <input type="text" pInputText> <br>
+                    Role <br>
+                    <input type="text" pInputText> <br>
+                </div>
+            </p-card>
         </div>
 
         <div *ngIf="content == 2"> 
-            <h4>Edit</h4>
+            <p-card [style]="{'width': '80'}">
+                <div>
+                    E-Mail <br>
+                    <input type="text" pInputTex> <br>
+                    Name <br>
+                    <input type="text" pInputText> <br>
+                    Tel. <br>
+                    <input type="text" pInputText> <br>
+                    Address <br>
+                    <input type="text" pInputText> <br>
+                    Role <br>
+                    <input type="text" pInputText> <br>
+                </div>
+            </p-card>
         </div>
 
-        <div *ngIf="content == 3"> 
-            <h4>Delete</h4>
+        <div *ngIf="content == 3">
+            <p-card [style]="{'width': '80', 'margin-bottom': '0em'}">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <div class="row">
+                    <div class="col-1">
+                        <b><label>E-Mail</label></b> <br>
+                        <b><label>Name</label></b> <br>
+                        <b><label>Tel.</label></b> <br>
+                        <b><label>Address</label></b> <br>
+                        <b><label>Role</label></b> <br>
+                    </div>
+                    <div class="col-1">
+                        <label>: &nbsp;&nbsp; {{customer.id}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{customer.email}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{customer.name}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{customer.phone}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{customer.address}}</label> <br>
+                    </div>  
+                </div>
+            </p-card>
         </div>
 
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-customer-management',
@@ -11,7 +12,7 @@ export class CustomerManagementComponent implements OnInit {
   customer: any = [];
   content : any;
   
-  constructor(private service : SharedService) { 
+  constructor(private service : SharedService, private location: Location) { 
     this.content = 0;
   }
 
@@ -42,6 +43,11 @@ export class CustomerManagementComponent implements OnInit {
       this.content = 0;
     } else {
       this.content = id;
+      this.refreshUserList();
     }
+  }
+
+  Back() {
+    this.location.back();
   }
 }

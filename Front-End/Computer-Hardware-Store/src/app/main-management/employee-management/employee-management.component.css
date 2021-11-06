@@ -2,6 +2,11 @@
     background-color: rgb(83, 83, 83);
 }
 
+.button {
+    right: 10px;
+    width: 120px;
+}
+
 .menu-item {
     color: white;
     text-decoration: none;
@@ -14,7 +19,9 @@
 }
 
 .content {
+    position: relative;
     padding: 10px;
+    padding-top: 10px;
 }
 
 .product h4{

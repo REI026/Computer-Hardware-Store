@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-employee-management',
@@ -7,18 +9,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeManagementComponent implements OnInit {
 
-  products: any = [
-    { img : "X",
-      brand : "X",
-      name : "X",
-      des : "X",
-      price : "X",
-    },
-  ]
+  employee: any = [];
+  content : any;
   
-  constructor() { }
+  constructor(private service : SharedService, private location: Location) {
+    this.content = 0;
+   }
 
   ngOnInit(): void {
+    this.refreshUserList();
+    if (this.employee.id == null) {
+      this.employee = [
+        {
+          id : "a",
+          email : "a",
+          name : "a",
+          phone : "a",
+          address : "a"
+        }
+      ]
+    }
   }
 
+  refreshUserList() {
+    this.service.getUsers().subscribe(data => {
+      this.employee = data;
+      console.log(this.employee);
+    })
+  }
+
+  changeContent(id: any) {
+    if (this.content != 0) {
+      this.content = 0;
+    } else {
+      this.content = id;
+      this.refreshUserList();
+    }
+  }
+
+  Back() {
+    this.location.back();
+  }
 }

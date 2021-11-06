@@ -1,29 +1,117 @@
 <body>
     <header class="top-header">
-        <a class="menu-item brand"  href="#">หน้าหลัก</a>
-        <a class="menu-item" href="/store">คลังสินค้า</a>
-        <a class="menu-item" href="#">ออกจากระบบ</a>
+        <a class="menu-item brand"  href="warehouse">สินค้าคงคลัง</a>
+        <a class="menu-item" style="cursor:pointer;" (click)="Back()">กลับ</a>
     </header>
     <div class="content">
-        <p-table [value]="products" responsiveLayout="scroll">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>รูปภาพ</th>
-                    <th>ยี่ห้อ</th>
-                    <th>รุ่น</th>
-                    <th>รายละเอียด</th>
-                    <th>ราคา</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr>
-                    <td>{{product.img}}</td>
-                    <td>{{product.brand}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.des}}</td>
-                    <td>{{product.price}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
+        <div style=" padding-left: 5px;">
+            <button *ngIf="content == 0" pButton pRipple type="button" label="Add Product" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 1" pButton pRipple type="button" label="Add" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 2" pButton pRipple type="button" label="Save" (click)="changeContent(1)" class="p-button-raised button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content == 3" pButton pRipple type="button" label="Delete" (click)="changeContent(1)" class="p-button-danger button" style="width: 150px;"></button>&nbsp;
+            <button *ngIf="content != 0" pButton pRipple type="button" label="Back" (click)="changeContent(0)" class="p-button-raised button"></button>
+        </div> <br>
+
+        <div *ngIf="content == 0"> 
+            <p-table [value]="product" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Brand</th>
+                        <th>Name/Model</th>
+                        <th>Details</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>Each</th>
+                        <th style="width: 187px;">Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{product.id}}</td>
+                        <td>{{product.img}}</td>
+                        <td>{{product.brand}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.des}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.type}}</td>
+                        <td>{{product.each}}</td>
+                        <td>
+                            <button (click)="changeContent(2)" pButton pRipple type="button" label="Edit" class="p-button-raised action-button"></button> &nbsp;
+                            <button (click)="changeContent(3)" pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger action-button"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div *ngIf="content == 1"> 
+            <p-card [style]="{'width': '80'}">
+                <div>
+                    Brand <br>
+                    <input type="text" pInputTex> <br>
+                    Name/Model <br>
+                    <input type="text" pInputText> <br>
+                    Details <br>
+                    <input type="text" pInputText> <br>
+                    Price <br>
+                    <input type="text" pInputText> <br>
+                    Type <br>
+                    <input type="text" pInputText> <br>
+                    Each <br>
+                    <input type="text" pInputText> <br>
+                </div>
+            </p-card>
+        </div>
+
+        <div *ngIf="content == 2"> 
+            <p-card [style]="{'width': '80'}">
+                <div>
+                    Brand <br>
+                    <input type="text" pInputTex> <br>
+                    Name/Model <br>
+                    <input type="text" pInputText> <br>
+                    Details <br>
+                    <input type="text" pInputText> <br>
+                    Price <br>
+                    <input type="text" pInputText> <br>
+                    Type <br>
+                    <input type="text" pInputText> <br>
+                    Each <br>
+                    <input type="text" pInputText> <br>
+                </div>
+            </p-card>
+        </div>
+
+        <div *ngIf="content == 3">
+            <p-card [style]="{'width': '80', 'margin-bottom': '0em'}">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <div class="row">
+                    <div class="col-1">
+                        <b><label>Image</label></b> <br>
+                        <b><label>ID</label></b> <br>
+                        <b><label>Brand</label></b> <br>
+                        <b><label>Name/Model</label></b> <br>
+                        <b><label>Details</label></b> <br>
+                        <b><label>Price</label></b> <br>
+                        <b><label>Type</label></b> <br>
+                        <b><label>Each</label></b> <br>
+                    </div>
+                    <div class="col-1">
+                        <label>: &nbsp;&nbsp; {{product.img}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.id}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.brand}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.name}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.des}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.price}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.type}}</label> <br>
+                        <label>: &nbsp;&nbsp; {{product.each}}</label> <br>
+                    </div>  
+                </div>
+            </p-card>
+        </div>
+
     </div>
 </body>

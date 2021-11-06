@@ -1,19 +1,20 @@
 <body>
     <header class="top-header">
-        <a class="menu-item brand"  href="#">หน้าหลัก</a>
-        <a class="menu-item" href="/store">รายการสินค้า</a>
-        <a class="menu-item" href="#">ออกจากระบบ</a>
+        <a class="menu-item brand"  href="store">หน้าร้าน</a>
+        <a class="menu-item" style="cursor:pointer;" (click)="Back()">กลับ</a>
     </header>
-    <div class="content">
-        <p-table [value]="products" responsiveLayout="scroll">
+
+    <div *ngIf="content == 0"> 
+        <p-table [value]="product" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>รูปภาพ</th>
-                    <th>ยี่ห้อ</th>
-                    <th>รุ่น</th>
-                    <th>รายละเอียด</th>
-                    <th>ราคา</th>
-                    <th></th>
+                    <th>Image</th>
+                    <th>Brand</th>
+                    <th>Name/Model</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Each</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-product>
@@ -23,7 +24,8 @@
                     <td>{{product.name}}</td>
                     <td>{{product.des}}</td>
                     <td>{{product.price}}</td>
-                    <td>เลือกสินค้า</td>
+                    <td>{{product.type}}</td>
+                    <td>{{product.each}}</td>
                 </tr>
             </ng-template>
         </p-table>
